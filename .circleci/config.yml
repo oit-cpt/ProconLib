@@ -31,10 +31,10 @@ jobs:
             - run: docker-compose exec test build/test/mathTest
 
 
-              workflows:
-                  version: 2
-                  flow:
-                      jobs:
-                          - build
+workflows:
+    version: 2
+    flow:
+        jobs:
+            - build
 
 # vim:set ts=4 sts=4 sw=4:
