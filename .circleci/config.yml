@@ -19,8 +19,8 @@ jobs:
                 name: save docker cache
                 command: |
                     mkdir -p ~/cache
-                    docker save -o ~/cache/image.tar oit-cpt/ProconLib
-                    docker images oit-cpt/ProconLib
+                    docker save -o ~/cache/image.tar oit-cpt/proconlib
+                    docker images oit-cpt/proconlib
             - save_cache:
                 key: docker-{{ checksum "Dockerfile" }}
                 paths: ~/cache/image.tar
