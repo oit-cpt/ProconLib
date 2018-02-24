@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 
-add_executable(mathUnitTest math/test_inverse_factorial.cpp)
-target_link_libraries(mathUnitTest ProconMath gtest gtest_main pthread)
+file(GLOB MATH_TEST_FILES "math/test_*.cpp")
+add_executable(mathTest ${MATH_TEST_FILES})
+target_link_libraries(mathTest ProconMath gtest gtest_main pthread)

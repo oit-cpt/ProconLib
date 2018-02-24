@@ -1,0 +1,41 @@
+version: 2
+jobs:
+    build:
+        working_directory: ~/work
+        machine: true
+        steps:
+            - checkout
+            - restore_cache:
+                key: docker-{{ checksum "Dockerfile" }}
+                path: ~/cache/image.tar
+            - run:
+                command: |
+                    if [ -f ~/cache/image.tar ]; then
+                        docker load -i ~/cache/image.tar
+                    else
+                        docker-compose build test
+                    fi
+            - run:
+                name: save docker cache
+                command: |
+                    mkdir -p ~/cache
+                    docker save -o ~/cache/image.tar oit-cpt/proconlib
+                    docker images oit-cpt/proconlib
+            - save_cache:
+                key: docker-{{ checksum "Dockerfile" }}
+                paths: ~/cache/image.tar
+            - run: docker-compose up -d
+            - run: docker-compose exec test ./lint.sh
+            - run: docker-compose exec test mkdir build
+            - run: docker-compose exec test bash -c "cd build && cmake .."
+            - run: docker-compose exec test bash -c "cd build && make -j 2"
+            - run: docker-compose exec test build/test/mathTest
+
+
+workflows:
+    version: 2
+    flow:
+        jobs:
+            - build
+
+# vim:set ts=4 sts=4 sw=4:
