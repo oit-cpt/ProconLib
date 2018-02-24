@@ -1,0 +1,10 @@
+version: "3"
+services:
+  test:
+    image: oit-cpt/proconlib
+    build: .
+    volumes:
+      - .:/src
+
+
+# vim:set ts=2 sts=2 sw=2:

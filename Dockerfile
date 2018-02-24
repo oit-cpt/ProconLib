@@ -8,3 +8,5 @@ RUN pip3 install setuptools wheel && \
     pip3 install cpplint
 
 WORKDIR /src
+
+CMD ["tail", "-f", "/dev/null"]
