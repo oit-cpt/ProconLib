@@ -6,14 +6,18 @@
 # テストの実行
 ## cpplint
 ```bash
-./lint.sh
+make lint
 ```
 
 ## 単体テスト
 ```bash
-mkdir build
-cd build
-cmake ..
-make
-build/test/mathTest
+make build
+make test
 ```
+
+# コードの自動整形
+```bash
+make format ファイル名
+```
+
+`make lint` に引っかかった時はこれを実行すればエラーはかなり減るはず
