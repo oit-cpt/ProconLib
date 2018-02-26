@@ -25,11 +25,10 @@ jobs:
                 key: docker-{{ checksum "Dockerfile" }}
                 paths: ~/cache/image.tar
             - run: docker-compose up -d
-            - run: docker-compose exec test ./lint.sh
-            - run: docker-compose exec test mkdir build
-            - run: docker-compose exec test bash -c "cd build && cmake .."
-            - run: docker-compose exec test bash -c "cd build && make -j 2"
-            - run: docker-compose exec test build/test/mathTest
+            - run: docker-compose exec test make lint
+            - run: docker-compose exec test make build
+            - run: docker-compose exec test make test
+            - run: docker-compose rm -s
 
 
 workflows:
