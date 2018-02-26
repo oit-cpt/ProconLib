@@ -1,3 +1,5 @@
+#include "template.h"
+
 struct Edge{
     int to;
     long long cost;
