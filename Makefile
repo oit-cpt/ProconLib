@@ -15,9 +15,11 @@ build: ${LIBS}
 	cmake ..; \
 	make -j 2
 
-test: ${LIBS}
+test: ${BUILD_DIR}
 	${BUILD_DIR}/test/mathTest
 
+format:
+	clang-format -i $(FILE)
 
 clean:
 	- rm -rf ${BUILD_DIR}
