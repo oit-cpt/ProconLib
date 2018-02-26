@@ -15,7 +15,7 @@ build: ${LIBS}
 	cmake ..; \
 	make -j 2
 
-test: ${LIBS}
+test: ${BUILD_DIR}
 	${BUILD_DIR}/test/mathTest
 
 format:
