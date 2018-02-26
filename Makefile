@@ -18,6 +18,8 @@ build: ${LIBS}
 test: ${LIBS}
 	${BUILD_DIR}/test/mathTest
 
+format:
+	clang-format -i $(FILE)
 
 clean:
 	- rm -rf ${BUILD_DIR}
