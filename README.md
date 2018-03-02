@@ -17,7 +17,7 @@ make test
 
 # コードの自動整形
 ```bash
-make format ファイル名
+make format FILE=ファイル名
 ```
 
 `make lint` に引っかかった時はこれを実行すればエラーはかなり減るはず
