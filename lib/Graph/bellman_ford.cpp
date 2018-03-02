@@ -2,46 +2,44 @@
 
 struct Edge {
   int to;
-  long long cost;
-  Edge(int to, long long cost) : to(to), cost(cost) {}
+  Int cost;
+  Edge(int to, Int cost) : to(to), cost(cost) {}
 };
 
 class BellmanFord {
  private:
-  long long INFl = (long long)1e15;
-  int array_size_of_cost;
-  int node_num;
+  Int INF_L = (Int)1e15;
+  int arraySizeOfCost;
+  int nodeNum;
   vector<vector<Edge>> adj;  // adj[始点][動的配列で始点から伸びる枝]
   vector<bool> negative;  // negative[n] := nに到達するまでに負閉路があるか
 
  public:
-  BellmanFord(int n);
-  vector<long long> dist;  // 最短経路
-  void add_edge(int f, int t, long long c);
-  void run(int f);
-  bool get_negative(int n);
+  explicit BellmanFord(int n);
+  vector<Int> dist;  // 最短経路
+  void AddEdge(int f, int t, Int c);
+  void Run(int f);
+  bool GetNegative(int n);
 };
 
 BellmanFord::BellmanFord(int n)
-    : array_size_of_cost(n + 1),
-      node_num(n),
-      adj(vector<vector<Edge>>(array_size_of_cost)),
-      negative(array_size_of_cost),
-      dist(vector<long long>(array_size_of_cost)) {
-  fill(dist.begin(), dist.end(), INFl);
+    : ArraySizeOfCost(n + 1),
+      nodeNum(n),
+      adj(vector<vector<Edge>>(ArraySizeOfCost)),
+      negative(ArraySizeOfCost),
+      dist(vector<Int>(ArraySizeOfCost)) {
+  fill(dist.begin(), dist.end(), INF_L);
   fill(negative.begin(), negative.end(), false);
 }
 
-void BellmanFord::add_edge(int f, int t, long long c) {
-  adj[f].push_back(Edge(t, c));
-}
+void BellmanFord::AddEdge(int f, int t, Int c) { adj[f].push_back(Edge(t, c)); }
 
-void BellmanFord::run(int first_node) {
-  dist[first_node] = 0;
-  for (int loop = 0; loop < node_num - 1; loop++) {
-    for (int i = 0; i < node_num; i++) {
+void BellmanFord::Run(int firstNode) {
+  dist[firstNode] = 0;
+  for (int loop = 0; loop < nodeNum - 1; loop++) {
+    for (int i = 0; i < nodeNum; i++) {
       for (const Edge& e : adj[i]) {
-        if (dist[i] == INFl) continue;
+        if (dist[i] == INF_L) continue;
         if (dist[e.to] > dist[i] + e.cost) {
           dist[e.to] = dist[i] + e.cost;
         }
@@ -49,10 +47,10 @@ void BellmanFord::run(int first_node) {
     }
   }
 
-  for (int loop = 0; loop < node_num; loop++) {
-    for (int i = 0; i < node_num; i++) {
+  for (int loop = 0; loop < nodeNum; loop++) {
+    for (int i = 0; i < nodeNum; i++) {
       for (const Edge& e : adj[i]) {
-        if (dist[i] == INFl) continue;
+        if (dist[i] == INF_L) continue;
         if (dist[e.to] > dist[i] + e.cost) {
           dist[e.to] = dist[i] + e.cost;
           negative[e.to] = true;
@@ -65,4 +63,4 @@ void BellmanFord::run(int first_node) {
   }
 }
 
-bool BellmanFord::get_negative(int n) { return negative[n]; }
+bool BellmanFord::GetNegative(int n) { return negative[n]; }
