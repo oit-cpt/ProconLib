@@ -19,7 +19,7 @@ class BellmanFord {
   vector<Int> dist;  // 最短経路
   void AddEdge(int f, int t, Int c);
   void Run(int f);
-  bool GetNegative(int n);
+  bool HasNegativeCycle(int n);
 };
 
 BellmanFord::BellmanFord(int n)
@@ -63,4 +63,4 @@ void BellmanFord::Run(int firstNode) {
   }
 }
 
-bool BellmanFord::GetNegative(int n) { return negative[n]; }
+bool BellmanFord::HasNegativeCycle(int n) { return negative[n]; }
