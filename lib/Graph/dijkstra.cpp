@@ -1,9 +1,9 @@
 #include "template.h"
 
 struct Edge {
-  long long cost;
+  Int cost;
   int to;
-  Edge(int t, long long c) {
+  Edge(int t, Int c) {
     cost = c;
     to = t;
   }
@@ -13,38 +13,38 @@ struct Edge {
 
 class Dijkstra {
  private:
-  bool is_dir = false;  // 無向グラフ: false, 有向グラフ: true
-  long long INFl = (long long)1e15;
-  int array_size_of_cost;
+  bool isDir = false;  // 無向グラフ: false, 有向グラフ: true
+  Int INFl = (Int)1e15;
+  int arraySizeOfCost;
   vector<vector<Edge>> adj;  // adj[始点][動的配列で始点から伸びる枝]
 
  public:
   Dijkstra(int n, bool dir);
-  vector<long long> cost;
+  vector<Int> cost;
   vector<int> prever;
-  void add_edge(int f, int t, long long c);
-  bool has_path(int t);  // tに至るパスはあるか
-  vector<int> get_shortest_path(int t);
-  void run(int f);
+  void AddEdge(int f, int t, Int c);
+  bool HasPath(int t);  // tに至るパスはあるか
+  vector<int> getShortestPath(int t);
+  void Run(int f);
 };
 
 Dijkstra::Dijkstra(int n, bool dir)
-    : is_dir(dir),
-      array_size_of_cost(n + 1),
-      adj(vector<vector<Edge>>(array_size_of_cost)),
-      cost(vector<long long>(array_size_of_cost)),
-      prever(vector<int>(array_size_of_cost, -1)) {
+    : isDir(dir),
+      arraySizeOfCost(n + 1),
+      adj(vector<vector<Edge>>(arraySizeOfCost)),
+      cost(vector<Int>(arraySizeOfCost)),
+      prever(vector<int>(arraySizeOfCost, -1)) {
   fill(cost.begin(), cost.end(), INFl);
 }
 
-void Dijkstra::add_edge(int f, int t, long long c) {
+void Dijkstra::AddEdge(int f, int t, Int c) {
   adj[f].push_back(Edge(t, c));
-  if (!is_dir) adj[t].push_back(Edge(f, c));
+  if (!isDir) adj[t].push_back(Edge(f, c));
 }
 
-bool Dijkstra::has_path(int t) { return cost[t] != INFl; }
+bool Dijkstra::HasPath(int t) { return cost[t] != INFl; }
 
-vector<int> Dijkstra::get_shortest_path(int t) {
+vector<int> Dijkstra::getShortestPath(int t) {
   vector<int> path;
   for (; t != -1; t = prever[t]) path.push_back(t);
 
@@ -52,7 +52,7 @@ vector<int> Dijkstra::get_shortest_path(int t) {
   return path;
 }
 
-void Dijkstra::run(int first_state) {
+void Dijkstra::Run(int first_state) {
   using State = Edge;
   priority_queue<State, vector<State>, greater<State>> pq;
 
@@ -68,7 +68,7 @@ void Dijkstra::run(int first_state) {
     for (int i = 0; i < adj[current_state.to].size(); i++) {
       State tmp = adj[current_state.to][i];
 
-      long long sum_cost = current_state.cost + tmp.cost;
+      Int sum_cost = current_state.cost + tmp.cost;
       if (cost[tmp.to] > sum_cost) {
         cost[tmp.to] = sum_cost;
         prever[tmp.to] = current_state.to;
