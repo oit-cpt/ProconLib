@@ -2,29 +2,29 @@
 
 struct Edge {
   int to;
-  long long cap;
+  Int cap;
   int rev;
 };
 
 class Dinic {
  private:
   int V;  // 頂点数
-  vector<long long> minCost;
+  vector<Int> minCost;
   vector<int> iter;
   vector<vector<Edge>> graph;
-  const long long INFl = 1e15;
+  const Int INFl = 1e15;
   bool Bfs(int s, int t);
-  long long Dfs(int idx, const int t, long long flow);
+  Int Dfs(int idx, const int t, Int flow);
 
  public:
   Dinic(int n);
-  void AddEdge(int from, int to, long long cap);
-  long long Run(int s, int t);
+  void AddEdge(int from, int to, Int cap);
+  Int Run(int s, int t);
 };
 
 Dinic::Dinic(int n) : V(n) { graph.assign(V, vector<Edge>()); }
 
-void Dinic::AddEdge(int from, int to, long long cap) {
+void Dinic::AddEdge(int from, int to, Int cap) {
   graph[from].push_back((Edge){to, cap, (int)graph[to].size()});
   graph[to].push_back((Edge){from, 0, (int)graph[from].size() - 1});
 }
@@ -47,12 +47,12 @@ bool Dinic::Bfs(int s, int t) {
   return (minCost[t] != -1);
 }
 
-long long Dinic::Dfs(int idx, const int t, long long flow) {
+Int Dinic::Dfs(int idx, const int t, Int flow) {
   if (idx == t) return flow;
   for (int &i = iter[idx]; i < (int)graph[idx].size(); ++i) {
     Edge &e = graph[idx][i];
     if (e.cap > 0 && minCost[idx] < minCost[e.to]) {
-      long long d = Dfs(e.to, t, min(flow, e.cap));
+      Int d = Dfs(e.to, t, min(flow, e.cap));
       if (d > 0) {
         e.cap -= d;
         graph[e.to][e.rev].cap += d;
@@ -63,11 +63,11 @@ long long Dinic::Dfs(int idx, const int t, long long flow) {
   return 0;
 }
 
-long long Dinic::Run(int s, int t) {
-  long long flow = 0;
+Int Dinic::Run(int s, int t) {
+  Int flow = 0;
   while (Bfs(s, t)) {
     iter.assign(graph.size(), 0);
-    long long f = 0;
+    Int f = 0;
     while ((f = Dfs(s, t, INFl)) > 0) {
       flow += f;
     }
