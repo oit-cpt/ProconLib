@@ -6,9 +6,9 @@ class UnionFind {
   vector<int> rank;    // 木の深さ
  public:
   UnionFind(int n);          // n要素で初期化
-  int find(int x);           // 木の根を返す
-  void unite(int x, int y);  // xとyの属する集合を併合
-  bool same(int x, int y);   // xとyが同じ集合に属するか否か
+  int Find(int x);           // 木の根を返す
+  void Unite(int x, int y);  // xとyの属する集合を併合
+  bool Same(int x, int y);   // xとyが同じ集合に属するか否か
 };
 
 UnionFind::UnionFind(int n) : parent(vector<int>(n)), rank(vector<int>(n)) {
@@ -18,17 +18,17 @@ UnionFind::UnionFind(int n) : parent(vector<int>(n)), rank(vector<int>(n)) {
   }
 }
 
-int UnionFind::find(int x) {
+int UnionFind::Find(int x) {
   if (parent[x] == x) {
     return x;
   } else {
-    return parent[x] = find(parent[x]);
+    return parent[x] = Find(parent[x]);
   }
 }
 
-void UnionFind::unite(int x, int y) {
-  x = find(x);
-  y = find(y);
+void UnionFind::Unite(int x, int y) {
+  x = Find(x);
+  y = Find(y);
   if (x == y) return;
 
   if (rank[x] < rank[y]) {
@@ -39,4 +39,4 @@ void UnionFind::unite(int x, int y) {
   }
 }
 
-bool UnionFind::same(int x, int y) { return find(x) == find(y); }
+bool UnionFind::Same(int x, int y) { return Find(x) == Find(y); }
