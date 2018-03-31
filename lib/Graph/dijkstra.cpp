@@ -13,14 +13,14 @@ struct Edge {
 class Dijkstra {
  private:
   bool isDir = false;  // 無向グラフ: false, 有向グラフ: true
-  long long INFl = (long long)1e15;
+  Int INFl = (Int)1e15;
   int V;                     // 頂点数
   vector<vector<Edge>> adj;  // adj[始点][動的配列で始点から伸びる枝]
   vector<int> prever;
 
  public:
   Dijkstra(int n, bool dir);
-  vector<long long> cost;
+  vector<Int> cost;
   void AddEdge(int f, int t, int c);
   bool HasPath(int t);                 // tに至るパスはあるか
   vector<int> getShortestPath(int t);  // tへの最短路
@@ -32,7 +32,7 @@ Dijkstra::Dijkstra(int n, bool dir)
       V(n + 1),
       adj(vector<vector<Edge>>(V)),
       prever(vector<int>(V, -1)),
-      cost(vector<long long>(V)) {
+      cost(vector<Int>(V)) {
   fill(cost.begin(), cost.end(), INFl);
 }
 
@@ -64,7 +64,7 @@ void Dijkstra::Run(int firstNode) {
     if (cost[currentEdge.to] < currentEdge.cost) continue;
 
     for (Edge tmp : adj[currentEdge.to]) {
-      long long sumCost = currentEdge.cost + tmp.cost;
+      Int sumCost = currentEdge.cost + tmp.cost;
       if (cost[tmp.to] > sumCost) {
         cost[tmp.to] = sumCost;
         prever[tmp.to] = currentEdge.to;
