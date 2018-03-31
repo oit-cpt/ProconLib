@@ -25,8 +25,9 @@ class Dinic {
 Dinic::Dinic(int n) : V(n) { graph.assign(V, vector<Edge>()); }
 
 void Dinic::AddEdge(int from, int to, Int cap) {
-  graph[from].push_back((Edge){to, cap, <int>(graph[to].size())});
-  graph[to].push_back((Edge){from, 0, <int>(graph[from].size() - 1)});
+  graph[from].push_back((Edge){to, cap, static_cast<int>(graph[to].size())});
+  graph[to].push_back(
+      (Edge){from, 0, static_cast<int>(graph[from].size() - 1)});
 }
 
 bool Dinic::Bfs(int s, int t) {
@@ -49,7 +50,7 @@ bool Dinic::Bfs(int s, int t) {
 
 Int Dinic::Dfs(int idx, const int t, Int flow) {
   if (idx == t) return flow;
-  for (int &i = iter[idx]; i < <int>(graph[idx].size()); ++i) {
+  for (int &i = iter[idx]; i < static_cast<int>(graph[idx].size()); ++i) {
     Edge &e = graph[idx][i];
     if (e.cap > 0 && minCost[idx] < minCost[e.to]) {
       Int d = Dfs(e.to, t, min(flow, e.cap));
