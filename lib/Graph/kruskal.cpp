@@ -5,7 +5,7 @@ class UnionFind {
   vector<int> parent;  // 親
   vector<int> rank;    // 木の深さ
  public:
-  UnionFind(int n);          // n要素で初期化
+  explicit UnionFind(int n);          // n要素で初期化
   int Find(int x);           // 木の根を返す
   void Unite(int x, int y);  // xとyの属する集合を併合
   bool Same(int x, int y);   // xとyが同じ集合に属するか否か
@@ -62,7 +62,7 @@ class Kruskal {
   WeightedGraph<T> minimumSpanningTree;
 
  public:
-  Kruskal(int n);
+  explicit Kruskal(int n);
   void AddEdge(int from, int to, T cost);
   T Run();
   WeightedGraph<T> GetMinimumSpanningTree();
