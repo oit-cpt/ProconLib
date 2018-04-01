@@ -1,11 +1,9 @@
 #include "template.h"
 
 struct Edge {
-  int cost, to;
-  Edge(int t, int c) {
-    cost = c;
-    to = t;
-  }
+  int to, cost;
+  Edge(int to, int cost) : to(to), cost(cost) {}
+
   bool operator<(const Edge &e) const { return cost < e.cost; }
   bool operator>(const Edge &e) const { return cost > e.cost; }
 };
