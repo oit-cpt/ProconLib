@@ -1,49 +1,46 @@
 #include "template.h"
 
-struct Edge {
-  int cost, to;
-  Edge(int t, int c) {
-    cost = c;
-    to = t;
-  }
-  bool operator<(const Edge &e) const { return cost < e.cost; }
-  bool operator>(const Edge &e) const { return cost > e.cost; }
-};
-
+template <typename T>
 class Dijkstra {
  private:
   bool isDir = false;  // 無向グラフ: false, 有向グラフ: true
-  Int INFl = (Int)1e15;
+  T INF = numeric_limits<T>::max();
   int V;                     // 頂点数
   vector<vector<Edge>> adj;  // adj[始点][動的配列で始点から伸びる枝]
   vector<int> prever;
 
  public:
   Dijkstra(int n, bool dir);
-  vector<Int> cost;
+  vector<T> cost;
   void AddEdge(int f, int t, int c);
   bool HasPath(int t);                 // tに至るパスはあるか
   vector<int> getShortestPath(int t);  // tへの最短路
   void Run(int f);
 };
 
-Dijkstra::Dijkstra(int n, bool dir)
+template <typename T>
+Dijkstra<T>::Dijkstra(int n, bool dir)
     : isDir(dir),
       V(n + 1),
       adj(vector<vector<Edge>>(V)),
       prever(vector<int>(V, -1)),
-      cost(vector<Int>(V)) {
-  fill(cost.begin(), cost.end(), INFl);
+      cost(vector<T>(V)) {
+  fill(cost.begin(), cost.end(), INF);
 }
 
-void Dijkstra::AddEdge(int f, int t, int c) {
+template <typename T>
+void Dijkstra<T>::AddEdge(int f, int t, int c) {
   adj[f].push_back(Edge(t, c));
   if (!isDir) adj[t].push_back(Edge(f, c));
 }
 
-bool Dijkstra::HasPath(int t) { return cost[t] != INFl; }
+template <typename T>
+bool Dijkstra<T>::HasPath(int t) {
+  return cost[t] != INF;
+}
 
-vector<int> Dijkstra::getShortestPath(int t) {
+template <typename T>
+vector<int> Dijkstra<T>::getShortestPath(int t) {
   vector<int> path;
   for (; t != -1; t = prever[t]) path.push_back(t);
 
@@ -51,7 +48,8 @@ vector<int> Dijkstra::getShortestPath(int t) {
   return path;
 }
 
-void Dijkstra::Run(int firstNode) {
+template <typename T>
+void Dijkstra<T>::Run(int firstNode) {
   priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
 
   cost[firstNode] = 0;
@@ -64,7 +62,7 @@ void Dijkstra::Run(int firstNode) {
     if (cost[currentEdge.to] < currentEdge.cost) continue;
 
     for (Edge tmp : adj[currentEdge.to]) {
-      Int sumCost = currentEdge.cost + tmp.cost;
+      T sumCost = currentEdge.cost + tmp.cost;
       if (cost[tmp.to] > sumCost) {
         cost[tmp.to] = sumCost;
         prever[tmp.to] = currentEdge.to;
