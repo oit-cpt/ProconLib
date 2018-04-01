@@ -8,9 +8,14 @@ struct Edge {
 };
 
 template <typename T>
+using Edges = vector<Edge<T>>;
+template <typename T>
+using WeightedGraph = vector<Edges<T>>;
+
+template <typename T>
 class Prim {
  private:
-  vector<vector<Edge<T>>> graph;
+  WeightedGraph<T> graph;
   vector<bool> used;
 
  public:
