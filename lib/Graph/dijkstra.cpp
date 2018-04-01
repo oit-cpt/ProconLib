@@ -1,5 +1,15 @@
 #include "template.h"
 
+struct Edge {
+  int cost, to;
+  Edge(int t, int c) {
+    cost = c;
+    to = t;
+  }
+  bool operator<(const Edge &e) const { return cost < e.cost; }
+  bool operator>(const Edge &e) const { return cost > e.cost; }
+};
+
 template <typename T>
 class Dijkstra {
  private:
