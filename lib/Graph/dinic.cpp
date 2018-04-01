@@ -5,6 +5,7 @@ struct Edge {
   int to;
   T cap;
   int rev;
+  Edge(int to, T cap, int rev) : to(to), cap(cap), rev(rev) {}
 };
 
 template <typename T>
