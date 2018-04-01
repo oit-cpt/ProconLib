@@ -32,9 +32,9 @@ Dinic<T>::Dinic(int n) : V(n) {
 
 template <typename T>
 void Dinic<T>::AddEdge(int from, int to, T cap) {
-  graph[from].push_back((Edge<T>){to, cap, static_cast<int>(graph[to].size())});
+  graph[from].push_back(Edge<T>(to, cap, static_cast<int>(graph[to].size())));
   graph[to].push_back(
-      (Edge<T>){from, 0, static_cast<int>(graph[from].size() - 1)});
+      Edge<T>(from, 0, static_cast<int>(graph[from].size() - 1)));
 }
 
 template <typename T>
