@@ -19,7 +19,7 @@ class Prim {
   vector<bool> used;
 
  public:
-  Prim(int n);
+  explicit Prim(int n);
   void AddEdge(int from, int to, T cost);
   T Run();
 };
