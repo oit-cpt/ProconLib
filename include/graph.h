@@ -11,4 +11,4 @@ struct Edge {
 template <typename T>
 using Edges = vector<Edge<T>>;
 template <typename T>
-using WeightedGraph = vector<Edges<T>>;
+using AdjList = vector<Edges<T>>;
