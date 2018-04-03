@@ -1,11 +1,9 @@
-#include <bits/stdc++.h>
-
 template <typename T>
 struct Edge {
-  int src, to;
+  int from, to;
   T cost;
-  Edge(int to, T cost) : src(-1), to(to), cost(cost) {}
-  Edge(int src, int to, T cost) : src(src), to(to), cost(cost) {}
+  Edge(int to, T cost) : from(-1), to(to), cost(cost) {}
+  Edge(int from, int to, T cost) : from(from), to(to), cost(cost) {}
 };
 
 template <typename T>
