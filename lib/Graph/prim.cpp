@@ -3,7 +3,7 @@
 template <typename T>
 class Prim {
  private:
-  WeightedGraph<T> graph;
+  AdjList<T> graph;
   vector<bool> used;
 
  public:
