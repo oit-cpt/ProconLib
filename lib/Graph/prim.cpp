@@ -1,17 +1,5 @@
 #include "template.h"
-
-template <typename T>
-struct Edge {
-  int to;
-  T cost;
-  Edge(int to, T cost) : to(to), cost(cost) {}
-};
-
-template <typename T>
-using Edges = vector<Edge<T>>;
-template <typename T>
-using WeightedGraph = vector<Edges<T>>;
-
+#include "graph.h"
 template <typename T>
 class Prim {
  private:
