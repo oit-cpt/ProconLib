@@ -7,13 +7,13 @@ class Kruskal {
  private:
   int V;  // 頂点数
   Edges<T> edges;
-  WeightedGraph<T> minimumSpanningTree;
+  AdjList<T> minimumSpanningTree;
 
  public:
   explicit Kruskal(int n);
   void AddEdge(int from, int to, T cost);
   T Run();
-  WeightedGraph<T> GetMinimumSpanningTree();
+  AdjList<T> GetMinimumSpanningTree();
 };
 
 template <typename T>
@@ -44,6 +44,6 @@ T Kruskal<T>::Run() {
 }
 
 template <typename T>
-WeightedGraph<T> Kruskal<T>::GetMinimumSpanningTree() {
+AdjList<T> Kruskal<T>::GetMinimumSpanningTree() {
   return minimumSpanningTree;
 }
