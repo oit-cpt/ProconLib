@@ -1,12 +1,5 @@
 #include "template.h"
-
-template <typename T>
-struct Edge {
-  int to;
-  T cap;
-  int rev;
-  Edge(int to, T cap, int rev) : to(to), cap(cap), rev(rev) {}
-};
+#include "graph.h"
 
 template <typename T>
 class Dinic {
