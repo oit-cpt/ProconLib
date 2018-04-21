@@ -14,7 +14,7 @@ class Dinic {
 
  public:
   explicit Dinic(int n);
-  void AddEdge(int from, int to, T cap);
+  void AddEdge(int from, int to, T cost);
   T Run(int s, int t);
 };
 
@@ -22,10 +22,10 @@ template <typename T>
 Dinic<T>::Dinic(int n) : V(n), graph(n) {}
 
 template <typename T>
-void Dinic<T>::AddEdge(int from, int to, T cap) {
-  graph[from].push_back(Edge<T>(to, cap, static_cast<int>(graph[to].size())));
+void Dinic<T>::AddEdge(int from, int to, T cost) {
+  graph[from].push_back(Edge<T>(static_cast<int>(graph[to].size()), to, cost));
   graph[to].push_back(
-      Edge<T>(from, 0, static_cast<int>(graph[from].size() - 1)));
+      Edge<T>(static_cast<int>(graph[from].size() - 1), from, 0));
 }
 
 template <typename T>
@@ -38,7 +38,7 @@ bool Dinic<T>::Bfs(int s, int t) {
     int p = que.front();
     que.pop();
     for (auto &e : graph[p]) {
-      if (e.cap > 0 && minCost[e.to] < 0) {
+      if (e.cost > 0 && minCost[e.to] < 0) {
         minCost[e.to] = minCost[p] + 1;
         que.push(e.to);
       }
@@ -52,11 +52,11 @@ T Dinic<T>::Dfs(int idx, const int t, T flow) {
   if (idx == t) return flow;
   for (int &i = iter[idx]; i < static_cast<int>(graph[idx].size()); ++i) {
     Edge<T> &e = graph[idx][i];
-    if (e.cap > 0 && minCost[idx] < minCost[e.to]) {
-      T d = Dfs(e.to, t, min(flow, e.cap));
+    if (e.cost > 0 && minCost[idx] < minCost[e.to]) {
+      T d = Dfs(e.to, t, min(flow, e.cost));
       if (d > 0) {
-        e.cap -= d;
-        graph[e.to][e.rev].cap += d;
+        e.cost -= d;
+        graph[e.to][e.from].cost += d;
         return d;
       }
     }
