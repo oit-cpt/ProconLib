@@ -7,8 +7,8 @@ class Dinic {
   int V;  // 頂点数
   vector<T> minCost;
   vector<int> iter;
-  vector<vector<Edge<T>>> graph;
-  const T INF = numeric_limits<T>::max();
+  AdjList<T> graph;
+  const T INF = numeric_limits<T>::max() / 10;
   bool Bfs(int s, int t);
   T Dfs(int idx, const int t, T flow);
 
