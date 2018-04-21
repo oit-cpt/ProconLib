@@ -50,7 +50,7 @@ bool Dinic<T>::Bfs(int s, int t) {
 template <typename T>
 T Dinic<T>::Dfs(int idx, const int t, T flow) {
   if (idx == t) return flow;
-  for (int &i = iter[idx]; i < static_cast<int>(graph[idx].size()); ++i) {
+  for (int &i = iter[idx]; i < graph[idx].size(); ++i) {
     Edge<T> &e = graph[idx][i];
     if (e.cost > 0 && minCost[idx] < minCost[e.to]) {
       T d = Dfs(e.to, t, min(flow, e.cost));
