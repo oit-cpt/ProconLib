@@ -1,5 +1,5 @@
 #include "graph.h"
-#include "lib/DataStructure/union_find.cpp"
+#include "../DataStructure/union_find.cpp"
 #include "template.h"
 
 template <typename T>
