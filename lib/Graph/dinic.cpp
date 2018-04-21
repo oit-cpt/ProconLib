@@ -19,9 +19,7 @@ class Dinic {
 };
 
 template <typename T>
-Dinic<T>::Dinic(int n) : V(n) {
-  graph.assign(V, vector<Edge<T>>());
-}
+Dinic<T>::Dinic(int n) : V(n), graph(n) {}
 
 template <typename T>
 void Dinic<T>::AddEdge(int from, int to, T cap) {
