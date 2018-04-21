@@ -1,5 +1,5 @@
-#include "template.h"
 #include "graph.h"
+#include "template.h"
 
 template <typename T>
 class Dinic {
