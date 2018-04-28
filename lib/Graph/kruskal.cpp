@@ -1,6 +1,6 @@
 #include "graph.h"
-#include "../DataStructure/union_find.cpp"
 #include "template.h"
+#include "../DataStructure/union_find.h"
 
 template <typename T>
 class Kruskal {
