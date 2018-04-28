@@ -1,12 +1,6 @@
 #include "template.h"
+#include "graph.h"
 
-struct Edge {
-  int to, cost;
-  Edge(int to, int cost) : to(to), cost(cost) {}
-
-  bool operator<(const Edge &e) const { return cost < e.cost; }
-  bool operator>(const Edge &e) const { return cost > e.cost; }
-};
 
 template <typename T>
 class Dijkstra {
