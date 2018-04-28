@@ -11,14 +11,14 @@
 - [ ] Treap
 
 ## グラフ
-- [x] BellmanFord
+- [x] Bellman Ford
 - [x] Prim
 - [ ] Dijkstra
 - [ ] Kruskal
 - [ ] Dinic
-- [ ] BipartiteMatching
-- [ ] 橋の検出
-- [ ] 強連結成分分解
+- [ ] Bipartite Matching
+- [ ] 橋の検出(Finding Bridges)
+- [ ] 強連結成分分解(Strongly Connected Components)
 
 ## 木
 - [ ] 直径(TreeDiameter)
@@ -32,7 +32,7 @@
 ## 幾何
 
 ## 文字列
-- [ ] ローリングハッシュ
+- [ ] ローリングハッシュ(Rolling Hash)
 - [ ] Trie木
 - [ ] suffix array
 - [ ] Aho–Corasick
