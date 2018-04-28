@@ -1,17 +1,13 @@
+#include "graph.h"
 #include "template.h"
 
-struct Edge {
-  int to;
-  Int cost;
-  Edge(int to, Int cost) : to(to), cost(cost) {}
-};
-
+template <typename T>
 class BellmanFord {
  private:
-  Int INF_L = (Int)1e15;
-  int arraySizeOfCost;
+  T INF = numeric_limits<T>::max() / 10;
+  int V;
   int nodeNum;
-  vector<vector<Edge>> adj;  // adj[始点][動的配列で始点から伸びる枝]
+  AdjList<T> adj;  // adj[始点][動的配列で始点から伸びる枝]
   vector<bool> negative;  // negative[n] := nに到達するまでに負閉路があるか
 
  public:
@@ -22,24 +18,22 @@ class BellmanFord {
   bool HasNegativeCycle(int n);
 };
 
-BellmanFord::BellmanFord(int n)
-    : ArraySizeOfCost(n + 1),
-      nodeNum(n),
-      adj(vector<vector<Edge>>(ArraySizeOfCost)),
-      negative(ArraySizeOfCost),
-      dist(vector<Int>(ArraySizeOfCost)) {
-  fill(dist.begin(), dist.end(), INF_L);
-  fill(negative.begin(), negative.end(), false);
+template <typename T>
+BellmanFord<T>::BellmanFord(int n)
+    : V(n + 1), nodeNum(n), adj(V), negative(V, false), dist(V, INF) {}
+
+template <typename T>
+void BellmanFord<T>::AddEdge(int f, int t, Int c) {
+  adj[f].push_back(Edge<T>(t, c));
 }
 
-void BellmanFord::AddEdge(int f, int t, Int c) { adj[f].push_back(Edge(t, c)); }
-
-void BellmanFord::Run(int firstNode) {
+template <typename T>
+void BellmanFord<T>::Run(int firstNode) {
   dist[firstNode] = 0;
   for (int loop = 0; loop < nodeNum - 1; loop++) {
     for (int i = 0; i < nodeNum; i++) {
-      for (const Edge& e : adj[i]) {
-        if (dist[i] == INF_L) continue;
+      for (const Edge<T>& e : adj[i]) {
+        if (dist[i] == INF) continue;
         if (dist[e.to] > dist[i] + e.cost) {
           dist[e.to] = dist[i] + e.cost;
         }
@@ -49,8 +43,8 @@ void BellmanFord::Run(int firstNode) {
 
   for (int loop = 0; loop < nodeNum; loop++) {
     for (int i = 0; i < nodeNum; i++) {
-      for (const Edge& e : adj[i]) {
-        if (dist[i] == INF_L) continue;
+      for (const Edge<T>& e : adj[i]) {
+        if (dist[i] == INF) continue;
         if (dist[e.to] > dist[i] + e.cost) {
           dist[e.to] = dist[i] + e.cost;
           negative[e.to] = true;
@@ -63,4 +57,7 @@ void BellmanFord::Run(int firstNode) {
   }
 }
 
-bool BellmanFord::HasNegativeCycle(int n) { return negative[n]; }
+template <typename T>
+bool BellmanFord<T>::HasNegativeCycle(int n) {
+  return negative[n];
+}
