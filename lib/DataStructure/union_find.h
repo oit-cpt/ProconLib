@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 #include "template.h"
 
 class UnionFind {
