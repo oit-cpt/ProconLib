@@ -15,7 +15,7 @@ class Dijkstra {
   vector<T> cost;
   void AddEdge(int f, int t, int c);
   bool HasPath(int t);                 // tに至るパスはあるか
-  vector<int> getShortestPath(int t);  // tへの最短路
+  vector<int> GetShortestPath(int t);  // tへの最短路
   void Run(int f);
 };
 
@@ -37,7 +37,7 @@ bool Dijkstra<T>::HasPath(int t) {
 }
 
 template <typename T>
-vector<int> Dijkstra<T>::getShortestPath(int t) {
+vector<int> Dijkstra<T>::GetShortestPath(int t) {
   vector<int> path;
   for (; t != -1; t = prever[t]) path.push_back(t);
 
