@@ -1,13 +1,12 @@
-#include "template.h"
 #include "graph.h"
-
+#include "template.h"
 
 template <typename T>
 class Dijkstra {
  private:
   bool isDir = false;  // 無向グラフ: false, 有向グラフ: true
   T INF = numeric_limits<T>::max();
-  int V;                     // 頂点数
+  int V;           // 頂点数
   AdjList<T> adj;  // adj[始点][動的配列で始点から伸びる枝]
   vector<int> prever;
 
@@ -22,11 +21,7 @@ class Dijkstra {
 
 template <typename T>
 Dijkstra<T>::Dijkstra(int n, bool dir)
-    : isDir(dir),
-      V(n + 1),
-      adj(V),
-      prever(vector<int>(V, -1)),
-      cost(V) {
+    : isDir(dir), V(n + 1), adj(V), prever(vector<int>(V, -1)), cost(V) {
   fill(cost.begin(), cost.end(), INF);
 }
 
@@ -73,4 +68,3 @@ void Dijkstra<T>::Run(int firstNode) {
     }
   }
 }
-
