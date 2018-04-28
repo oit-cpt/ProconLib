@@ -1,3 +1,4 @@
+#pragma once
 #include "graph.h"
 #include "template.h"
 
