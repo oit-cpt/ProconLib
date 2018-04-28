@@ -5,7 +5,7 @@ template <typename T>
 class Dijkstra {
  private:
   bool isDir = false;  // 無向グラフ: false, 有向グラフ: true
-  T INF = numeric_limits<T>::max();
+  T INF = numeric_limits<T>::max() / 10;
   int V;           // 頂点数
   AdjList<T> adj;  // adj[始点][動的配列で始点から伸びる枝]
   vector<int> prever;
