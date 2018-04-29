@@ -14,8 +14,8 @@
 - [x] Bellman Ford
 - [x] Prim
 - [ ] Dijkstra
-- [ ] Kruskal
-- [ ] Dinic
+- [x] Kruskal
+- [x] Dinic
 - [ ] Bipartite Matching
 - [ ] 橋の検出(Finding Bridges)
 - [ ] 強連結成分分解(Strongly Connected Components)
@@ -26,6 +26,7 @@
 - [ ] Lowest Common Ancestor
 
 ## 数学
+- [x] Inverse Factorial
 - [ ] 最小公倍数・最大公約数(GCD・LCM)
 - [ ] 拡張ユークリッドの互除法(Ext GCD)
 - [ ] 素数リスト作成・エラトステネスの篩(Sieve of Eratosthenes)
