@@ -5,14 +5,13 @@
 template <typename T>
 class Dijkstra {
  private:
-  bool isDir = false;  // 無向グラフ: false, 有向グラフ: true
   T INF = numeric_limits<T>::max() / 10;
   int V;           // 頂点数
   AdjList<T> adj;  // adj[始点][動的配列で始点から伸びる枝]
   vector<int> prever;
 
  public:
-  Dijkstra(int n, bool dir);
+  Dijkstra(int n);
   vector<T> cost;
   void AddEdge(int f, int t, int c);
   bool HasPath(int t);                 // tに至るパスはあるか
@@ -21,15 +20,14 @@ class Dijkstra {
 };
 
 template <typename T>
-Dijkstra<T>::Dijkstra(int n, bool dir)
-    : isDir(dir), V(n + 1), adj(V), prever(vector<int>(V, -1)), cost(V) {
+Dijkstra<T>::Dijkstra(int n)
+    : V(n + 1), adj(V), prever(vector<int>(V, -1)), cost(V) {
   fill(cost.begin(), cost.end(), INF);
 }
 
 template <typename T>
 void Dijkstra<T>::AddEdge(int f, int t, int c) {
   adj[f].push_back(Edge<T>(t, c));
-  if (!isDir) adj[t].push_back(Edge<T>(f, c));
 }
 
 template <typename T>
