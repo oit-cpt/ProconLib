@@ -11,7 +11,7 @@ class Dijkstra {
   vector<int> prever;
 
  public:
-  Dijkstra(int n);
+  explicit Dijkstra(int n);
   vector<T> cost;
   void AddEdge(int f, int t, int c);
   bool HasPath(int t);                 // tに至るパスはあるか
