@@ -13,6 +13,6 @@ vector<T> eratos(T n) {
     }
   }
   for (int p = 2; p <= n; p++)
-    if (isPrime[p]) primeVec.pb(p);
+    if (isPrime[p]) primeVec.push_back(p);
   return primeVec;
 }
