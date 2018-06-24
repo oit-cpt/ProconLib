@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS "-g -Wall")
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories(include)
+include_directories(.)
 
 add_subdirectory(lib)
 enable_testing()
