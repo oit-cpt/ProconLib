@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
-#include "template.h"
-vector<int> eratos(int N);
+#include "../../lib/Math/eratos.h"
 
 TEST(MathTest, eratos_100) {
   const int N = 100;
