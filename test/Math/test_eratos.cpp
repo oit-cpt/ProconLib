@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../../lib/Math/eratos.h"
+#include "lib/Math/eratos.h"
 
 TEST(MathTest, eratos_100) {
   const int N = 100;
