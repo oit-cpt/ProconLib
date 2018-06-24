@@ -8,8 +8,9 @@ vector<T> eratos(T n) {
   isPrime[0] = false;
   isPrime[1] = false;
   for (int p = 2; p * p <= n; p++) {
-    if (isPrime[p])
+    if (isPrime[p]) {
       for (int i = p * 2; i <= n; i += p) isPrime[i] = false;
+    }
   }
   for (int p = 2; p <= n; p++)
     if (isPrime[p]) primeVec.pb(p);
