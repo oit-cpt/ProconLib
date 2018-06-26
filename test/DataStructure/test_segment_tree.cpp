@@ -3,9 +3,9 @@
 
 // Range Minimum Query
 TEST(DataStructureTest, segment_tree_RMQ) {
-  vector<int> vec(3, (2 << 31) - 1);
+  vector<int> vec(3, 1e9);
   SegmentTree<int> segmentTree(vec, [](int a, int b) { return min(a, b); },
-                               (2 << 31) - 1);
+                               1e9);
 
   segmentTree.Update(0, 1);
   segmentTree.Update(1, 2);
