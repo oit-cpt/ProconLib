@@ -6,7 +6,7 @@
 # Library List
 ## データ構造
 - [x] UnionFind
-- [ ] SegmentTree
+- [x] SegmentTree
 - [ ] BIT(Binary-Indexed-Tree)
 - [ ] Treap
 
