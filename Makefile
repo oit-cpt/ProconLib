@@ -10,14 +10,14 @@ lint: ${LIBS}
 	cpplint ./lib/*/*
 	cpplint ./test/*/*
 
-build: ${LIBS}
+build: ${LIBS} ${TESTS}
 	mkdir -p ${BUILD_DIR}; \
 	cd build; \
 	cmake ..; \
 	make -j 2
 
-test: ${BUILD_DIR}
-	${BUILD_DIR}/test/mathTest
+test: build
+	${BUILD_DIR}/test/runTest
 
 format:
 	clang-format -i $(FILE)
