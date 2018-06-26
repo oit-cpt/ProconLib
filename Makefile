@@ -17,7 +17,7 @@ build: ${LIBS}
 	make -j 2
 
 test: ${BUILD_DIR}
-	${BUILD_DIR}/test/mathTest
+	${BUILD_DIR}/test/runTest
 
 format:
 	clang-format -i $(FILE)
