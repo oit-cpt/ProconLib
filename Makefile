@@ -1,5 +1,6 @@
 BUILD_DIR=build
 LIBS=$(wildcard lib/*/*.cpp)
+LIBS+=$(wildcard lib/*/*.h)
 TESTS=$(wildcard test/*/*.cpp)
 
 
