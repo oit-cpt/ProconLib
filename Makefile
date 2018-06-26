@@ -10,13 +10,13 @@ lint: ${LIBS}
 	cpplint ./lib/*/*
 	cpplint ./test/*/*
 
-build: ${LIBS}
+build: ${LIBS} ${TESTS}
 	mkdir -p ${BUILD_DIR}; \
 	cd build; \
 	cmake ..; \
 	make -j 2
 
-test: ${BUILD_DIR}
+test: build
 	${BUILD_DIR}/test/runTest
 
 format:
